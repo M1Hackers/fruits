@@ -14,7 +14,7 @@ gem 'puma', '~> 3.11'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # JavaScript runtime
-gem 'therubyracer', platforms: :ruby
+gem 'mini_racer', platforms: :ruby
 
 # react on rails
 gem 'react-rails'

@@ -1,9 +1,11 @@
 /* global google */
 
 class LandmarksComponent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+      super(props);
+      this.places = [ {name: 'Place1', details: 'something'} ];
+    }
+
     render() {
       return <div className="panel">
       <DestinationComponent />
@@ -12,7 +14,8 @@ class LandmarksComponent extends React.Component {
           <button type="submit">Search</button>
         </div>
         <h1>Hello, Landmarks</h1>
-      </div>
+        <LandmarksComponentTable places={this.places} />
+      </div>;
     }
   }
 
