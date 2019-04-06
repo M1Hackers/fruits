@@ -1,1 +1,6 @@
+# Temporary Rails files
+log/
+tmp/
+
+# IDE config files
 .vscode/
