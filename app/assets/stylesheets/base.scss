@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display:flex;
+}
+
+.panel {
+    border: 1px solid black;
+    padding: 5px;
+    width:50%;
+
+}
