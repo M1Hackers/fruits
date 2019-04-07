@@ -3,7 +3,7 @@
 class LandmarksComponent extends React.Component {
     constructor(props) {
       super(props);
-
+      
       this.places = [];
       this.autocomplete = null;
       this.state = { places: this.places, inputVal: "" ,displaySearch : false};
@@ -57,7 +57,7 @@ class LandmarksComponent extends React.Component {
           <i id="search-icon" className="material-icons" onClick={this.getPlaces}>search</i>
         </div>
         : null}
-        <LandmarksComponentTable id="table" places={this.state.places}/>
+        <LandmarksComponentTable id="table" places={this.state.places} itinerary_id = {this.props.id}/>
       </div>;
     }
     

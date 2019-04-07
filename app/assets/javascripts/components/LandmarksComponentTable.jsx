@@ -19,11 +19,14 @@ class LandmarksComponentTable extends React.Component {
       rows.push(
         <LandmarksComponentRow
           place={place}
-          key={id} />
+          key={id} 
+          thing = {id}
+          itinerary_id = {this.props.itinerary_id} />
       );
       id += 1;
     });
 
+    // console.log("id, ", id);
     return <table id="table1" className="landmarks-table">
       <thead className="header">
         <tr>
@@ -34,10 +37,11 @@ class LandmarksComponentTable extends React.Component {
       </thead>
       <tbody>{rows}</tbody>
     </table>;
-
   }
 }
 
 LandmarksComponentTable.propTypes = {
   places: PropTypes.array,
+  thing: PropTypes.number,
+  itinerary_id: PropTypes.number
 }

@@ -1,5 +1,5 @@
 <div class="container">
-    <%= react_component('LandmarksComponent', {}, id: "landmarks", class: "panel") %>
+    <%= react_component('LandmarksComponent', {id: @itinerary.id}, id: "landmarks", class: "panel") %>
     <%= react_component('ItineraryComponent', {
         id: @itinerary.id,
         name: @itinerary.name,
