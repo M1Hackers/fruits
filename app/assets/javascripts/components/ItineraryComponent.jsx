@@ -29,9 +29,9 @@ class ItineraryComponent extends React.Component {
       gridTemplateRows: 'repeat(' + 24 + ', ' + 100/24 + 'fr [row])',
     };
     return (
-      <div className="panel">
+      <div className="panel" id="itinerary">
       <div className="topbar">
-        <div>Your Itinerary</div>
+        <span>Your Itinerary</span>
         <div className="swap">
           <div className="box btn btn-success">Itinerary</div>
           <div className="box btn btn-success">Map</div>
