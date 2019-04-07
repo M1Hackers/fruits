@@ -32,7 +32,7 @@ class ItineraryComponent extends React.Component {
           {this.state.visits.map(visit => {
             relative_start_day = (visit.start - this.state.start)/1000/60/60/24;
             day = Math.floor(relative_start_day);
-            start_hr = (relative_start_day - day) * 24;
+            start_hr = Math.round((relative_start_day - day) * 24);
             duration = Math.max(Math.floor((visit.end - visit.start)/1000/60/60), 1);
             const cellStyle = {
               gridColumn: 'col ' + (day + 1) + ' / span 1',
