@@ -1,11 +1,15 @@
 class LandmarksComponentTable extends React.Component {
   constructor(props) {
       super(props);
+      this.state={places:[]};
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({places:nextProps.places});
   }
 
   render() {
     const rows = [];
-    console.log(this.props)
     this.props.places.forEach((place) => {
       rows.push(
         <LandmarksComponentRow
