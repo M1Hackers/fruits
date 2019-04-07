@@ -11,6 +11,8 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
+# Add jQuery bc it's nice
+gem 'jquery-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # JavaScript runtime
