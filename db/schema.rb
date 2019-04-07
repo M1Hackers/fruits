@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_022014) do
+ActiveRecord::Schema.define(version: 2019_04_07_101658) do
 
   create_table "itineraries", force: :cascade do |t|
     t.string "name"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 2019_04_07_022014) do
     t.float "latitude"
     t.float "longitude"
     t.float "rating"
-    t.datetime "start"
-    t.datetime "end"
+    t.time "start"
+    t.time "end"
     t.integer "itinerary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "day"
     t.index ["itinerary_id"], name: "index_visits_on_itinerary_id"
   end
 

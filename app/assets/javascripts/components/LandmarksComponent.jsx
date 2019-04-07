@@ -3,13 +3,13 @@
 class LandmarksComponent extends React.Component {
     constructor(props) {
       super(props);
-      
       this.places = [];
       this.autocomplete = null;
       this.state = {visits:this.props.visits, places: this.places, inputVal: "" ,displaySearch : false};
       this.setLatLong = this.setLatLong.bind(this);
       this.getPlaces = this.getPlaces.bind(this);
       this.addNewVisitMarker = this.addNewVisitMarker.bind(this);
+      this.days = Math.max(Math.floor((new Date(this.props.end) - new Date(this.props.start))/1000/60/60/24), 1);
     }
 
     componentDidMount() {
@@ -107,7 +107,12 @@ class LandmarksComponent extends React.Component {
           <i id="search-icon" className="material-icons" onClick={this.getPlaces}>search</i>
         </div>
         : null}
-        <LandmarksComponentTable id="table" places={this.state.places} itinerary_id = {this.props.id} markerCallback = {this.addNewVisitMarker}/>
+        <LandmarksComponentTable
+          id="table"
+          places={this.state.places}
+          itinerary_id={this.props.id}
+          days={this.days}
+          markerCallback={this.addNewVisitMarker}/>
       </div>;
     }
     
