@@ -51,7 +51,7 @@ class LandmarksComponentRow extends React.Component {
       <td><input id="date-input" type="date" /><br/>
       <input id="start-input" type="time" /><br/>
       <input id="end-input" type="time" /><br/>
-      <button class="btn btn-success" onClick={getEventInfo}>Add</button></td>
+      <button className="btn btn-success" onClick={getEventInfo}>Add</button></td>
     </tr>;
   }
 

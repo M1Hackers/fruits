@@ -6,13 +6,15 @@ class LandmarksComponent extends React.Component {
       
       this.places = [];
       this.autocomplete = null;
-      this.state = { places: this.places, inputVal: "" ,displaySearch : false};
+      this.state = {visits:this.props.visits, places: this.places, inputVal: "" ,displaySearch : false};
       this.setLatLong = this.setLatLong.bind(this);
       this.getPlaces = this.getPlaces.bind(this);
+      this.addNewVisitMarker = this.addNewVisitMarker.bind(this);
     }
 
     componentDidMount() {
       loc = new window.google.maps.LatLng(0,0);
+      infowindow = new google.maps.InfoWindow();
       if (this.props.visits.length>0) {
         loc = new window.google.maps.LatLng(this.props.visits[0].latitude,this.props.visits[0].longitude);
       }
@@ -26,6 +28,13 @@ class LandmarksComponent extends React.Component {
       this.setState({ lat: newLat, long: newLong ,displaySearch:true});
     }
     
+    addNewVisitMarker(place){
+      newVisits = this.state.visits
+      newVisits.push(place)
+      this.setState({visits: newVisits})
+      this.createMarkerWithLatLon(place);
+    }
+
     createMarkerWithLatLon(place) {
       var marker = new window.google.maps.Marker({
         map: map,
@@ -77,7 +86,7 @@ class LandmarksComponent extends React.Component {
           });
         }
       
-        this.props.visits.forEach((visit) => {
+        this.state.visits.forEach((visit) => {
           this.createMarkerWithLatLon(visit);
         });  
 
@@ -98,7 +107,7 @@ class LandmarksComponent extends React.Component {
           <i id="search-icon" className="material-icons" onClick={this.getPlaces}>search</i>
         </div>
         : null}
-        <LandmarksComponentTable id="table" places={this.state.places} itinerary_id = {this.props.id} markerCallback = {this.createMarkerWithLatLon}/>
+        <LandmarksComponentTable id="table" places={this.state.places} itinerary_id = {this.props.id} markerCallback = {this.addNewVisitMarker}/>
       </div>;
     }
     
