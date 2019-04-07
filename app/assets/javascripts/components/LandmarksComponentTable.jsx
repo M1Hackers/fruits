@@ -6,24 +6,25 @@ class LandmarksComponentTable extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({places:nextProps.places});
-    console.log(this.state.places);
   }
 
   render() {
     if (this.state.places.length < 1){
       return "";
     }
-
+    $("#table1 > tr").remove();
     const rows = [];
+    var id = 0;
     this.props.places.forEach((place) => {
       rows.push(
         <LandmarksComponentRow
           place={place}
-          key={place.name} />
+          key={id} />
       );
+      id += 1;
     });
 
-    return <table className="landmarks-table">
+    return <table id="table1" className="landmarks-table">
       <thead className="header">
         <tr>
           <th>Name</th>
@@ -33,7 +34,6 @@ class LandmarksComponentTable extends React.Component {
       </thead>
       <tbody>{rows}</tbody>
     </table>;
-  
 
   }
 }
