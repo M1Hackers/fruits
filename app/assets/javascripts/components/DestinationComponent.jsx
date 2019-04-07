@@ -24,7 +24,7 @@ class DestinationComponent extends React.Component {
     render() {
       return <div className="destination">
         <div id="cities" className="search-container">
-            <input ref={this.autocompleteInput} id="city-input" placeholder="Enter a city" type="text" />
+            <input ref={this.autocompleteInput} id="city-input" placeholder="Enter your destination" type="text" />
         </div>
       </div>;
     }

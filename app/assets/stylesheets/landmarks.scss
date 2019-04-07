@@ -6,10 +6,32 @@
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
-    border: none;
-    margin: 2px;
+    margin: 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+  }
+
+  #city-input {
+    width: 100%;
+    text-align: center;
   }
   
+  #landmark-search {
+    width: 90%;
+  }
+
+  #search-icon {
+    border-radius:15px;
+    width: 10%;
+    padding: 10px 0;
+    text-align: center;
+    height: 70%;
+  }
+
+  #search-icon:hover{
+      background-color: #e6e6e6;
+  }
+
 .search-container button {
     float: right;
     padding: 6px 10px;
@@ -30,6 +52,33 @@
 }
 
 #map {
-  // display:none;
-  height:400px;
+  display:none;
+  // height:400px;
+}
+
+table,
+table td {
+  border-collapse: separate;
+}
+
+.landmarks-table {
+  width: 80%;
+  margin-left:10%;
+  // border:1px solid black;
+}
+
+.landmarks-table td {
+  padding: 5px;
+}
+
+.landmarks-table tr {
+  line-height: 2;
+  text-align: left;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+}
+
+.landmarks-table th {
+  color:  gray;
+  padding: 5px;
 }

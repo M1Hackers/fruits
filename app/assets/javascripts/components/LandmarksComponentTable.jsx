@@ -6,9 +6,14 @@ class LandmarksComponentTable extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({places:nextProps.places});
+    console.log(this.state.places);
   }
 
   render() {
+    if (this.state.places.length < 1){
+      return "";
+    }
+
     const rows = [];
     this.props.places.forEach((place) => {
       rows.push(
@@ -18,10 +23,11 @@ class LandmarksComponentTable extends React.Component {
       );
     });
 
-    return <table>
-      <thead>
+    return <table className="landmarks-table">
+      <thead className="header">
         <tr>
           <th>Name</th>
+          <th>Address</th>
           <th>Rating</th>
         </tr>
       </thead>

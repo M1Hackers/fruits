@@ -8,6 +8,7 @@ class LandmarksComponentRow extends React.Component {
 
     return <tr>
       <td>{place.name}</td>
+      <td>{place.address}</td>
       <td>{place.rating}</td>
     </tr>;
   

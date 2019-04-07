@@ -4,15 +4,15 @@ class LandmarksComponent extends React.Component {
     constructor(props) {
       super(props);
 
-      this.places = [ {name: 'Place1', details: 'something'} ];
+      this.places = [];
       this.autocomplete = null;
-      this.state = { places: this.places, inputVal: "" };
+      this.state = { places: this.places, inputVal: "" ,displaySearch : false};
       this.setLatLong = this.setLatLong.bind(this);
       this.getPlaces = this.getPlaces.bind(this);
     }
     
     setLatLong(newLat, newLong) {
-      this.setState({ lat: newLat, long: newLong });
+      this.setState({ lat: newLat, long: newLong ,displaySearch:true});
     }
 
     getPlaces() {
@@ -32,7 +32,8 @@ class LandmarksComponent extends React.Component {
               { 
                 name: entry["name"],
                 rating: entry["rating"],
-                geometry: entry["geometry"]
+                geometry: entry["geometry"],
+                address: entry["formatted_address"]
               }
             );
           });
@@ -48,11 +49,13 @@ class LandmarksComponent extends React.Component {
     render() {
       return <div className="panel"><div id="map"></div>
       <DestinationComponent setLatLong={this.setLatLong} />
+      { this.state.displaySearch ?  
         <div className="search-container">
-          <input type="text" placeholder="Search for a landmark.." name="search" value={this.state.inputVal} onChange={evt => this.updateInputValue(evt)}></input>
-          <button type="submit" onClick={this.getPlaces}> Search </button>
+          <input id="landmark-search" type="text" placeholder="Search for a landmark.." name="search" value={this.state.inputVal} onChange={evt => this.updateInputValue(evt)}></input>
+          {/* <button type="submit" onClick={this.getPlaces}> Search </button> */}
+          <i id="search-icon" class="material-icons" onClick={this.getPlaces}>search</i>
         </div>
-        <h1>Hello, Landmarks</h1>
+        : null}
         <LandmarksComponentTable id="table" places={this.state.places}/>
       </div>;
     }
