@@ -6,11 +6,17 @@ class LandmarksComponent extends React.Component {
 
       this.places = [ {name: 'Place1', details: 'something'} ];
       this.autocomplete = null;
+      this.state = { lat: 0, long: 0 };
     }
 
     componentWillMount() {
       let map = new google.maps.Map(document.createElement('div'));
-      this.autocomplete = new window.google.maps.places.PlacesService(map);
+      this.autocomplete = new window.google.maps.places.PlacesService(map)
+
+    }
+    
+    setLatLong(newLat, newLong) {
+      this.setState({ lat: newLat, long: newLong });
     }
 
     render() {
@@ -18,13 +24,13 @@ class LandmarksComponent extends React.Component {
         <div />
       }
       return <div className="panel">
-      <DestinationComponent />
+      <DestinationComponent setLatLong={this.setLatLong} />
         <div className="search-container">
           <input type="text" placeholder="Search for a landmark.." name="search"></input>
           <button type="submit" onClick={this.getPlaces()}> Search </button>
         </div>
         <h1>Hello, Landmarks</h1>
-        <LandmarksComponentTable places={this.places} />
+        <LandmarksComponentTable places={this.places} lat={this.state.lat} long={this.state.long} />
       </div>;
     }
 

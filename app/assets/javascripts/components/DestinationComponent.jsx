@@ -17,6 +17,8 @@ class DestinationComponent extends React.Component {
     onPlaceChanged() {
         var place = this.getPlace();
         console.log(place);
+        console.log(place.geometry.location.lat());
+        this.props.setLatLong(place.geometry.location.lat(), place.geometry.location.long());
     }
 
     render() {
@@ -28,6 +30,6 @@ class DestinationComponent extends React.Component {
     }
   }
 
-//   DestinationComponent.propTypes = {
-//     google: any
-// };
+  DestinationComponent.propTypes = {
+    setLatLong: PropTypes.func
+};

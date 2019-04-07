@@ -29,5 +29,5 @@ class LandmarksComponentTable extends React.Component {
 }
 
 LandmarksComponentTable.propTypes = {
-  places: PropTypes.array
+  places: PropTypes.array,
 }
