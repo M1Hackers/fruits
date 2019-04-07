@@ -23,10 +23,12 @@ class ItineraryComponent extends React.Component {
 
   setIt() {
     document.getElementById("map").style.display="none";
+    document.getElementById("itinerary-grid").style.display="grid";
   }
 
   setMap() {
     document.getElementById("map").style.display="inline";
+    document.getElementById("itinerary-grid").style.display="none";
   }
 
   render() {
@@ -46,7 +48,7 @@ class ItineraryComponent extends React.Component {
           </div>
         </div>
         <div className="right-panel">
-        <div className="grid" style={gridStyle}>
+        <div id="itinerary-grid" className="grid" style={gridStyle}>
           {this.state.visits.map(visit => {
             relative_start_day = (visit.start - this.state.start)/1000/60/60/24;
             day = Math.floor(relative_start_day);
