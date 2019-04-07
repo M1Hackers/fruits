@@ -2,6 +2,11 @@ class ItinerariesController < ApplicationController
     def create
         @itinerary = Itinerary.new(itinerary_params)
         @itinerary.save
+        redirect_to @itinerary
+    end
+
+    def new
+        
     end
 
     def show

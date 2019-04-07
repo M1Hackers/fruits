@@ -21,17 +21,18 @@ class LandmarksComponent extends React.Component {
     }
 
     getPlaces() {
-      var loc = new window.google.maps.LatLng(this.state.lat, this.state.long);
+      var loc = new google.maps.LatLng(this.state.lat, this.state.long);
       map = new window.google.maps.Map(document.getElementById("map"), {center: loc, zoom: 15});
       // console.log(this.state);
       autocomplete = new window.google.maps.places.PlacesService(map);
       places_to_display = [];
       var request = {
-        query: 'Old State House',
-        fields: ['name','rating','geometry'],
+        location: 'loc',
+        radius: '500',
+        // fields: ['name','rating','geometry'],
       };
   
-      autocomplete.findPlaceFromQuery(request, function(results, status) {
+      autocomplete.nearbySearch(request, function(results, status) {
         console.log(results);
         if (status == window.google.maps.places.PlacesServiceStatus.OK) {
           results.forEach((entry) => {

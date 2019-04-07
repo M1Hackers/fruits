@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   resources :itineraries, :visits
 
-  root 'home#index'
+  root 'itineraries#new'
 end
