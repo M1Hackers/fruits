@@ -38,9 +38,19 @@ class ItineraryComponent extends React.Component {
 
   render() {
     n = Math.ceil((this.state.end - this.state.start)/1000/60/60/24);
+    hours = []
+    for (let i = 0; i <= 24; i++) {
+      const labelStyle = {
+        gridColumn: 'col 1 / span 1',
+        gridRow: 'row ' + (i + 1) + ' / span 1',
+        display: 'block',
+      }
+      hour = i <= 10 ? "0" + (i - 1) : (i - 1)
+      hours.push(<span key={i + "hr"} style={labelStyle}>{i > 0 ? hour + ":00" : ""}</span>)
+    }
     const gridStyle = {
-      gridTemplateColumns: 'repeat(' + n + ', [col] minmax(0, ' + 100/n + 'fr))',
-      gridTemplateRows: 'repeat(' + 24 + ', [row] minmax(0, ' + 100/24 + 'fr))',
+      gridTemplateColumns: 'repeat(' + (n + 1) + ', [col] minmax(0, ' + 100/n + 'fr))',
+      gridTemplateRows: 'repeat(' + 25 + ', [row] minmax(0, ' + 100/24 + 'fr))',
     };
     return (
       <div>
@@ -54,11 +64,12 @@ class ItineraryComponent extends React.Component {
       
         <div className="right-panel">
         <div id="itinerary-grid" className="grid" style={gridStyle}>
+          {hours}
           {this.state.visits.map(visit => {
             duration = Math.max(Math.floor((visit.end - visit.start)/1000/60/60), 1);
             const cellStyle = {
-              gridColumn: 'col ' + visit.day + ' / span 1',
-              gridRow: 'row ' + (visit.start.getUTCHours() + 1) + ' / span ' + duration + '',
+              gridColumn: 'col ' + (visit.day + 1) + ' / span 1',
+              gridRow: 'row ' + (visit.start.getUTCHours() + 2) + ' / span ' + duration + '',
               backgroundColor: 'orange',
             }
             return (
