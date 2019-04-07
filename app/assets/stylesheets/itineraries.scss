@@ -1,5 +1,18 @@
-.itin-grid {
-  display: grid;
+#itinerary {
+  .grid {
+    display: grid;
+    width: 100%;
+    height: 600px;
+  }
+
+  .item {
+    overflow: hidden;
+
+    p {
+      margin: 2px;
+      text-align: center;
+    }
+  }
 }
 
 .topbar {
