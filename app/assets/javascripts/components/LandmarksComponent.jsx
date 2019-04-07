@@ -14,6 +14,18 @@ class LandmarksComponent extends React.Component {
     setLatLong(newLat, newLong) {
       this.setState({ lat: newLat, long: newLong ,displaySearch:true});
     }
+    
+    createMarker(place) {
+      var marker = new window.google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+      });
+
+      window.google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+      });
+    }
 
     getPlaces() {
       var loc = new window.google.maps.LatLng(this.state.lat, this.state.long);
@@ -37,6 +49,7 @@ class LandmarksComponent extends React.Component {
                 address: entry["formatted_address"]
               }
             );
+            this.createMarker(entry);
           });
         }
 
@@ -48,7 +61,7 @@ class LandmarksComponent extends React.Component {
     }
 
     render() {
-      return <div><div id="map"></div>
+      return<div className="left-panel"><div id="map"></div>
       <DestinationComponent setLatLong={this.setLatLong} />
       { this.state.displaySearch ?  
         <div className="search-container">

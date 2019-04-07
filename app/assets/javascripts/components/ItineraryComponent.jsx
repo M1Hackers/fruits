@@ -11,6 +11,16 @@ class ItineraryComponent extends React.Component {
         return visit;
       }),
     };
+    this.setIt = this.setIt.bind(this);
+    this.setMap = this.setMap.bind(this);
+  }
+
+  setIt() {
+    document.getElementById("map").style.display="none";
+  }
+
+  setMap() {
+    document.getElementById("map").style.display="inline";
   }
 
   render() {
@@ -19,15 +29,17 @@ class ItineraryComponent extends React.Component {
       gridTemplateColumns: 'repeat(' + n + ', [col] minmax(0, ' + 100/n + 'fr))',
       gridTemplateRows: 'repeat(' + 24 + ', [row] minmax(0, ' + 100/24 + 'fr))',
     };
+    console.log("rerender");
     return (
       <div>
         <div className="topbar">
           <span>{this.state.name}</span>
           <div className="swap">
-            <div className="box btn btn-success">Itinerary</div>
-            <div className="box btn btn-success">Map</div>
+            <div className="box btn btn-success" onClick={this.setIt}>Itinerary</div>
+            <div className="box btn btn-success" onClick={this.setMap}>Map</div>
           </div>
         </div>
+        <div className="right-panel">
         <div className="grid" style={gridStyle}>
           {this.state.visits.map(visit => {
             relative_start_day = (visit.start - this.state.start)/1000/60/60/24;
@@ -46,6 +58,7 @@ class ItineraryComponent extends React.Component {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     );
