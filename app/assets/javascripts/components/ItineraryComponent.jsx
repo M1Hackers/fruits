@@ -37,7 +37,7 @@ class ItineraryComponent extends React.Component {
   }
 
   render() {
-    n = Math.ceil((this.state.end - this.state.start)/1000/60/60/24);
+    // Set up grid labels.
     hours = []
     for (let i = 0; i <= 24; i++) {
       const labelStyle = {
@@ -48,10 +48,29 @@ class ItineraryComponent extends React.Component {
       hour = i <= 10 ? "0" + (i - 1) : (i - 1)
       hours.push(<span key={i + "hr"} style={labelStyle}>{i > 0 ? hour + ":00" : ""}</span>)
     }
+    days = []
+    cur_date = new Date(this.state.start.getTime());
+    for (let i = 0; cur_date < this.state.end; i++) {
+      const labelStyle = {
+        gridColumn: 'col ' + (i + 1) + ' / span 1',
+        gridRow: 'row 1 / span 1',
+        display: 'block',
+      }
+      date = (cur_date.getMonth() + 1) + "/" + cur_date.getDate();
+      days.push(<span key={i + "d"} style={labelStyle}>{i != 0 ? date : ""}</span>);
+      if (i != 0) {
+        cur_date.setDate(cur_date.getDate() + 1);
+      }
+    }
+
+    // Set up grid styles.
+    n = Math.ceil((this.state.end - this.state.start)/1000/60/60/24);
     const gridStyle = {
       gridTemplateColumns: 'repeat(' + (n + 1) + ', [col] minmax(0, ' + 100/n + 'fr))',
       gridTemplateRows: 'repeat(' + 25 + ', [row] minmax(0, ' + 100/24 + 'fr))',
     };
+
+    // Render grid.
     return (
       <div>
         <div className="topbar">
@@ -64,6 +83,7 @@ class ItineraryComponent extends React.Component {
       
         <div className="right-panel">
         <div id="itinerary-grid" className="grid" style={gridStyle}>
+          {days}
           {hours}
           {this.state.visits.map(visit => {
             duration = Math.max(Math.floor((visit.end - visit.start)/1000/60/60), 1);
