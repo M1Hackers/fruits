@@ -33,9 +33,7 @@ class ItineraryComponent extends React.Component {
             relative_start_day = (visit.start - this.state.start)/1000/60/60/24;
             day = Math.floor(relative_start_day);
             start_hr = (relative_start_day - day) * 24;
-            console.log(start_hr);
             duration = Math.max(Math.floor((visit.end - visit.start)/1000/60/60), 1);
-            console.log(duration);
             const cellStyle = {
               gridColumn: 'col ' + (day + 1) + ' / span 1',
               gridRow: 'row ' + (start_hr + 1) + ' / span ' + duration + '',
