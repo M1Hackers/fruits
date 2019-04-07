@@ -14,7 +14,7 @@ class App extends React.Component {
     render() {
       return <div className="container">
           <LandmarksComponent />
-          <ItineraryComponent />
+          <ItineraryComponent id={this.props.id} />
       </div>
     }
   }
