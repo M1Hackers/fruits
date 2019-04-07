@@ -1,1 +1,10 @@
-<%= react_component('App', {id: @itinerary.id}) %>
+<div class="container">
+    <%= react_component('LandmarksComponent', {}, id: "landmarks", class: "panel") %>
+    <%= react_component('ItineraryComponent', {
+        id: @itinerary.id,
+        name: @itinerary.name,
+        start: @itinerary.start,
+        end: @itinerary.end,
+        visits: @itinerary.visits,
+    }, id: "itinerary", class: "panel") %>
+</div>

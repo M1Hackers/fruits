@@ -2,31 +2,15 @@ class ItineraryComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.id,
-      name: null,
-      start: null,
-      end: null,
-      visits: [],
+      name: props.name,
+      start: new Date(props.start),
+      end: new Date(props.end),
+      visits: props.visits.map((visit) => {
+        visit.start = new Date(visit.start);
+        visit.end = new Date(visit.end);
+        return visit;
+      }),
     };
-  }
-
-  componentDidMount() {
-    fetch('/itineraries/' + this.props.id + '.json')
-      .then((response) => {
-        return response.json();
-      })
-      .then((content) => {
-        this.setState({
-          name: content.name,
-          start: new Date(content.start),
-          end: new Date(content.end),
-          visits: content.visits.map((visit) => {
-            visit.start = new Date(visit.start);
-            visit.end = new Date(visit.end);
-            return visit;
-          }),
-        });
-      });
   }
 
   render() {
@@ -36,13 +20,14 @@ class ItineraryComponent extends React.Component {
       gridTemplateRows: 'repeat(' + 24 + ', [row] minmax(0, ' + 100/24 + 'fr))',
     };
     return (
-      <div className="panel" id="itinerary">
-      <div className="topbar">
-        <span>Your Itinerary</span>
-        <div className="swap">
-          <div className="box btn btn-success">Itinerary</div>
-          <div className="box btn btn-success">Map</div>
-        </div></div>
+      <div>
+        <div className="topbar">
+          <span>Your Itinerary</span>
+          <div className="swap">
+            <div className="box btn btn-success">Itinerary</div>
+            <div className="box btn btn-success">Map</div>
+          </div>
+        </div>
         <div className="grid" style={gridStyle}>
           {this.state.visits.map(visit => {
             relative_start_day = (visit.start - this.state.start)/1000/60/60/24;

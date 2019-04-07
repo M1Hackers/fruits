@@ -47,7 +47,7 @@ class LandmarksComponent extends React.Component {
     }
 
     render() {
-      return <div className="panel"><div id="map"></div>
+      return <div><div id="map"></div>
       <DestinationComponent setLatLong={this.setLatLong} />
       { this.state.displaySearch ?  
         <div className="search-container">
