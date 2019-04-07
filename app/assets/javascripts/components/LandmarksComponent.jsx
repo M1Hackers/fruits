@@ -21,11 +21,12 @@ class LandmarksComponent extends React.Component {
       autocomplete = new window.google.maps.places.PlacesService(map);
       places_to_display = [];
       var request = {
+        location: loc,
         query: this.state.inputVal,
-        fields: ['name','rating','geometry'],
+        radius: '500'
       };
   
-      autocomplete.findPlaceFromQuery(request, (results, status) => {
+      autocomplete.textSearch(request, (results, status) => {
         if (status == window.google.maps.places.PlacesServiceStatus.OK) {
           results.forEach((entry) => {
             places_to_display.push(

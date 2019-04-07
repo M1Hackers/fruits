@@ -13,7 +13,7 @@ class LandmarksComponentTable extends React.Component {
     if (this.state.places.length < 1){
       return "";
     }
-
+    $("#table1 > tr").remove();
     const rows = [];
     this.props.places.forEach((place) => {
       rows.push(
@@ -23,7 +23,9 @@ class LandmarksComponentTable extends React.Component {
       );
     });
 
-    return <table className="landmarks-table">
+    console.log("rows", rows);
+
+    return <table id="table1" className="landmarks-table">
       <thead className="header">
         <tr>
           <th>Name</th>
@@ -33,7 +35,6 @@ class LandmarksComponentTable extends React.Component {
       </thead>
       <tbody>{rows}</tbody>
     </table>;
-  
 
   }
 }
