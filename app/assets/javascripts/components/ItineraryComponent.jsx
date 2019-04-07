@@ -30,7 +30,14 @@ class ItineraryComponent extends React.Component {
     };
     return (
       <div className="panel">
-        <h1>Your Itinerary</h1>
+      <div className="topbar">
+        <div>Your Itinerary</div>
+        <div className="swap">
+          <div className="box btn btn-success">Itinerary</div>
+          <div className="box btn btn-success">Map</div>
+        </div>
+      </div>
+        
         <div className="itin-grid" style={gridStyle}>
           {this.state.visits.map(visit => {
             relative_start_day = (visit.start - this.state.start)/1000/60/60/24;

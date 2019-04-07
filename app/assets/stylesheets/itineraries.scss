@@ -1,3 +1,19 @@
 .itin-grid {
   display: grid;
 }
+
+.topbar {
+  line-height:2;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+}
+.topbar .swap {
+  right:0;
+  border: 1px solid black;
+  position:absolute;
+}
+
+.topbar .swap .box {
+  width:10%;
+}
