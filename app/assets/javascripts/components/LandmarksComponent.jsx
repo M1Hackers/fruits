@@ -53,7 +53,7 @@ class LandmarksComponent extends React.Component {
         <div className="search-container">
           <input id="landmark-search" type="text" placeholder="Search for a landmark.." name="search" value={this.state.inputVal} onChange={evt => this.updateInputValue(evt)}></input>
           {/* <button type="submit" onClick={this.getPlaces}> Search </button> */}
-          <i id="search-icon" class="material-icons" onClick={this.getPlaces}>search</i>
+          <i id="search-icon" className="material-icons" onClick={this.getPlaces}>search</i>
         </div>
         : null}
         <LandmarksComponentTable id="table" places={this.state.places}/>
