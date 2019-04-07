@@ -7,83 +7,57 @@ class LandmarksComponent extends React.Component {
       this.places = [ {name: 'Place1', details: 'something'} ];
       this.autocomplete = null;
       this.state = { lat: 0, long: 0 };
+      this.setLatLong = this.setLatLong.bind(this);
+      this.getPlaces = this.getPlaces.bind(this);
     }
 
-    componentWillMount() {
-      let map = new google.maps.Map(document.createElement('div'));
-      this.autocomplete = new window.google.maps.places.PlacesService(map)
+    // componentWillMount() {
 
-    }
+
+    // }
     
     setLatLong(newLat, newLong) {
       this.setState({ lat: newLat, long: newLong });
     }
 
+    getPlaces() {
+      var loc = new window.google.maps.LatLng(this.state.lat, this.state.long);
+      map = new window.google.maps.Map(document.getElementById("map"), {center: loc, zoom: 15});
+      // console.log(this.state);
+      autocomplete = new window.google.maps.places.PlacesService(map);
+      places_to_display = [];
+      var request = {
+        query: 'Old State House',
+        fields: ['name','rating','geometry'],
+      };
+  
+      autocomplete.findPlaceFromQuery(request, function(results, status) {
+        console.log(results);
+        if (status == window.google.maps.places.PlacesServiceStatus.OK) {
+          results.forEach((entry) => {
+            places_to_display.push(
+              { 
+                name: entry["name"],
+                rating: entry["rating"],
+                geometry: entry["geometry"]
+              }
+            );
+          });
+        }
+        this.places = places_to_display;
+        document.getElementById("table").forceUpdate();
+      });
+    }
+
     render() {
-      while (this.autocomplete == null) {
-        <div />
-      }
-      return <div className="panel">
+      return <div className="panel"><div id="map"></div>
       <DestinationComponent setLatLong={this.setLatLong} />
         <div className="search-container">
           <input type="text" placeholder="Search for a landmark.." name="search"></input>
-          <button type="submit" onClick={this.getPlaces()}> Search </button>
+          <button type="submit" onClick={this.getPlaces}> Search </button>
         </div>
         <h1>Hello, Landmarks</h1>
-        <LandmarksComponentTable places={this.places} lat={this.state.lat} long={this.state.long} />
+        <LandmarksComponentTable id="table" places={this.places}/>
       </div>;
     }
-
-  getPlaces() {
-    if (this.autocomplete == null) {
-      console.log("in here")
-      return [];
-    }
-    console.log("out here")
-    console.log(this.autocomplete)
-
-    places_to_display = [];
-    var request = {
-      query: 'Dunkin',
-      fields: ['name','rating','geometry']
-    };
-
-    this.autocomplete.findPlaceFromQuery(request, function(results, status) {
-      if (status == window.google.maps.places.PlacesServiceStatus.OK) {
-        results.forEach((entry) => {
-          places_to_display.push(
-            { 
-              name: entry[name],
-              details: entry[rating],
-              // details: entry[vicinity],
-              rating: entry[rating],
-              geometry: entry[geometry]
-            }
-          );
-        });
-      }
-      console.log(places_to_display);
-    });
-  }
-
 }
-
-    // URL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=' + '&keyword=dunkin&location=43.704587,-72.294892&radius=1000'
-    
-    // jQuery.get(URL, function(landmark_json) {
-    //     landmark_json[results].forEach((entry) => {
-    //       places_to_display.push(
-    //         { 
-    //           name: entry[name],
-    //           details: entry[vicinity],
-    //           rating: entry[rating],
-    //           geometry: entry[geometry]
-    //         }
-    //       );
-    //     });
-    // });
-  
-
-  // LandmarksComponent.propTypes = {
-  //     google: any
-  // };

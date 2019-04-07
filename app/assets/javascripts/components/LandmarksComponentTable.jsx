@@ -18,7 +18,7 @@ class LandmarksComponentTable extends React.Component {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Details</th>
+          <th>Rating</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>

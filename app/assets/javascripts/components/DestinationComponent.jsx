@@ -5,20 +5,21 @@ class DestinationComponent extends React.Component {
         super(props);
         this.autocompleteInput = React.createRef();
         this.autocomplete = null;
+        this.setLocation = null;
     }
 
     componentDidMount() {
         this.autocomplete =  new window.google.maps.places.Autocomplete(this.autocompleteInput.current, {
             types: ['(cities)']});
 
-        this.autocomplete.addListener('place_changed', this.onPlaceChanged);
+        setLocation = this.props.setLatLong;
+        this.autocomplete.addListener('place_changed', () => this.onPlaceChanged(setLocation));
+        console.log(this.props);
     }
 
-    onPlaceChanged() {
-        var place = this.getPlace();
-        console.log(place);
-        console.log(place.geometry.location.lat());
-        this.props.setLatLong(place.geometry.location.lat(), place.geometry.location.long());
+    onPlaceChanged(sf) {
+        var place = this.autocomplete.getPlace();
+        sf(place.geometry.location.lat(), place.geometry.location.lng());
     }
 
     render() {
