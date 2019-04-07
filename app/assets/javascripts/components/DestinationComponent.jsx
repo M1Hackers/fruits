@@ -14,7 +14,6 @@ class DestinationComponent extends React.Component {
 
         setLocation = this.props.setLatLong;
         this.autocomplete.addListener('place_changed', () => this.onPlaceChanged(setLocation));
-        console.log(this.props);
     }
 
     onPlaceChanged(sf) {
