@@ -50,13 +50,10 @@ class ItineraryComponent extends React.Component {
         <div className="right-panel">
         <div id="itinerary-grid" className="grid" style={gridStyle}>
           {this.state.visits.map(visit => {
-            relative_start_day = (visit.start - this.state.start)/1000/60/60/24;
-            day = Math.floor(relative_start_day);
-            start_hr = Math.round((relative_start_day - day) * 24);
             duration = Math.max(Math.floor((visit.end - visit.start)/1000/60/60), 1);
             const cellStyle = {
-              gridColumn: 'col ' + (day + 1) + ' / span 1',
-              gridRow: 'row ' + (start_hr + 1) + ' / span ' + duration + '',
+              gridColumn: 'col ' + visit.day + ' / span 1',
+              gridRow: 'row ' + (visit.start.getHours() + 1) + ' / span ' + duration + '',
               backgroundColor: 'orange',
             }
             return (
