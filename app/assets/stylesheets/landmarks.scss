@@ -1,3 +1,8 @@
+.left-panel{
+  background-color: white;
+
+}
+
 .search-container {
     display: flex;
 }
@@ -53,6 +58,12 @@
 
 #map {
   display:none;
+  height:75%;
+  width:40%;
+  // border:1px solid black;
+  position: absolute;
+  margin-top: 6%;
+  margin-left: 40%
 }
 
 table,

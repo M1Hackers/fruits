@@ -11,11 +11,24 @@ class ItineraryComponent extends React.Component {
         return visit;
       }),
     };
+    this.setIt = this.setIt.bind(this);
+    this.setMap = this.setMap.bind(this);
+
     window.sendVisit = (visit) => {
-      newVisits = this.state.visits
-      newVisits.push(visit)
-      this.setState({visits: newVisits})
+    newVisits = this.state.visits
+    newVisits.push(visit)
+    this.setState({visits: newVisits})
     };
+  }
+
+  setIt() {
+    document.getElementById("map").style.display="none";
+    document.getElementById("itinerary-grid").style.display="grid";
+  }
+
+  setMap() {
+    document.getElementById("map").style.display="inline";
+    document.getElementById("itinerary-grid").style.display="none";
   }
 
   render() {
@@ -24,16 +37,18 @@ class ItineraryComponent extends React.Component {
       gridTemplateColumns: 'repeat(' + n + ', [col] minmax(0, ' + 100/n + 'fr))',
       gridTemplateRows: 'repeat(' + 24 + ', [row] minmax(0, ' + 100/24 + 'fr))',
     };
+    console.log("rerender");
     return (
       <div>
         <div className="topbar">
           <span>{this.state.name}</span>
           <div className="swap">
-            <div className="box btn btn-success">Itinerary</div>
-            <div className="box btn btn-success">Map</div>
+            <div className="box btn btn-success" onClick={this.setIt}>Itinerary</div>
+            <div className="box btn btn-success" onClick={this.setMap}>Map</div>
           </div>
         </div>
-        <div className="grid" style={gridStyle}>
+        <div className="right-panel">
+        <div id="itinerary-grid" className="grid" style={gridStyle}>
           {this.state.visits.map(visit => {
             relative_start_day = (visit.start - this.state.start)/1000/60/60/24;
             day = Math.floor(relative_start_day);
@@ -51,6 +66,7 @@ class ItineraryComponent extends React.Component {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     );
