@@ -47,7 +47,7 @@ class LandmarksComponentRow extends React.Component {
       <td>{this.place.address}</td>
       <td>{this.place.rating}</td>
       <td>
-        <select id="day-input">
+        Day: <select id="day-input">
           {items}
         </select><br/>
         <input id="start-input" type="time" /><br/>

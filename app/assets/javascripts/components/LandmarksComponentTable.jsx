@@ -34,6 +34,7 @@ class LandmarksComponentTable extends React.Component {
           <th>Name</th>
           <th>Address</th>
           <th>Rating</th>
+          <th>Day</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>

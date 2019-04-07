@@ -51,7 +51,7 @@ class LandmarksComponent extends React.Component {
       var marker = new window.google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        opacity:0.5
+        opacity:0.3
       });
 
       window.google.maps.event.addListener(marker, 'click', function() {
@@ -68,7 +68,7 @@ class LandmarksComponent extends React.Component {
       var request = {
         location: loc,
         query: this.state.inputVal,
-        radius: '500'
+        radius: '1000'
       };
   
       autocomplete.textSearch(request, (results, status) => {
