@@ -1,6 +1,12 @@
+# Secret keys
+config/secrets.yml
+
 # Temporary Rails files
 log/
 tmp/
 
 # IDE config files
 .vscode/
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
