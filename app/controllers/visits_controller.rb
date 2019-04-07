@@ -9,6 +9,6 @@ class VisitsController < ApplicationController
 
     private
         def visit_params
-            params.require(:visit).permit(:name, :latitude, :longitude, :rating, :start, :end, :itinerary_id)
+            params.require(:visit).permit(:name, :latitude, :longitude, :rating, :day, :start, :end, :itinerary_id)
         end
 end
