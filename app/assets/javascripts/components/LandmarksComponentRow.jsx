@@ -5,8 +5,6 @@ class LandmarksComponentRow extends React.Component {
       this.place = this.props.place; 
       this.start = 0;
       this.end = 0;
-
-
   }
   
   render() {

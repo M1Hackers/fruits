@@ -1,10 +1,16 @@
-<div class = "vert"> 
+
+<%= image_tag('background-image.png', style: "height: 100%; width: 100%") %>
+<h4>
+<div class = "vert" style="padding: 10px; background: rgba(76, 175, 80, 0.3);"> 
     <div class = "center"> 
-        <%= form_with scope: :itinerary, url: itineraries_path, html: {class: "form-horizontal justify-content-center"}, local: true do |form| %>
-            <%= form.text_field :name, required: true %>
+            <%= form_with scope: :itinerary, url: itineraries_path, html: {class: "form-horizontal justify-content-center"}, local: true do |form| %>
+            <%= form.text_field :name, placeholder: 'Trip Name', required: true %>
+            <label for="start">Start Date</label>
             <%= form.date_field :start, required: true %>
+            <label for="start">End Date</label>
             <%= form.date_field :end, required: true%>
             <%= form.submit "Make Itinerary", {class: "btn btn-success"} %>
         <% end %>
     <div/>
 <div/>
+

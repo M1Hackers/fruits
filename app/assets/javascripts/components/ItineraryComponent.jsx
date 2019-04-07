@@ -47,6 +47,11 @@ class ItineraryComponent extends React.Component {
             <div className="box btn btn-success" onClick={this.setMap}>Map</div>
           </div>
         </div>
+        <div className="time-panel">
+          for (let index = 0; index < 24; index++) {
+            <div>hello</div>
+          }
+        </div>
         <div className="right-panel">
         <div id="itinerary-grid" className="grid" style={gridStyle}>
           {this.state.visits.map(visit => {
