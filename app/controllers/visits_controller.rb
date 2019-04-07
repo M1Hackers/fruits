@@ -1,7 +1,7 @@
 class VisitsController < ApplicationController
+    wrap_parameters format: [:json, :xml]
+
     def create
-        logger.debug params
-        logger.debug params["itinerary_id"]
         @itinerary = Itinerary.find(params[:visit][:itinerary_id])
         @visit = Visit.new(visit_params)
         @visit.save

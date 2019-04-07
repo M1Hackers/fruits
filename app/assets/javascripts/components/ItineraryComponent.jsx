@@ -11,6 +11,11 @@ class ItineraryComponent extends React.Component {
         return visit;
       }),
     };
+    window.sendVisit = (visit) => {
+      newVisits = this.state.visits
+      newVisits.push(visit)
+      this.setState({visits: newVisits})
+    };
   }
 
   render() {
