@@ -22,7 +22,7 @@ class ItineraryComponent extends React.Component {
     return (
       <div>
         <div className="topbar">
-          <span>Your Itinerary</span>
+          <span>{this.state.name}</span>
           <div className="swap">
             <div className="box btn btn-success">Itinerary</div>
             <div className="box btn btn-success">Map</div>
