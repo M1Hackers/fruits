@@ -1,4 +1,6 @@
 <%= form_with scope: :itinerary, url: itineraries_path, local: true do |form| %>
     <%= form.text_field :name %>
+    <%= form.date_field :start %>
+    <%= form.date_field :end %>
     <%= form.submit %>
 <% end %>
