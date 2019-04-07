@@ -2,12 +2,11 @@
 <html>
   <head>
     <title>Fruits</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&libraries=places" type="text/javascript"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&libraries=places" type="text/javascript"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 

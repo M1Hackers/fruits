@@ -20,11 +20,10 @@ class LandmarksComponentTable extends React.Component {
       rows.push(
         <LandmarksComponentRow
           place={place}
-          key={this.id} 
-          thing = {this.id}
-          itinerary_id = {this.props.itinerary_id} 
-          markerCallback = {this.props.markerCallback}
-          />
+          key={this.id}
+          itinerary_id={this.props.itinerary_id}
+          days={this.props.days}
+          markerCallback = {this.props.markerCallback}/>
       );
       this.id += 1;
     });
@@ -35,6 +34,7 @@ class LandmarksComponentTable extends React.Component {
           <th>Name</th>
           <th>Address</th>
           <th>Rating</th>
+          <th>Day</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
@@ -46,5 +46,6 @@ LandmarksComponentTable.propTypes = {
   places: PropTypes.array,
   thing: PropTypes.number,
   itinerary_id: PropTypes.number,
-  markerCallback: PropTypes.func
+  days: PropTypes.number,
+  markerCallback: PropTypes.func,
 }

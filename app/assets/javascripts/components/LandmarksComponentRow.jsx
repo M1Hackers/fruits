@@ -1,29 +1,24 @@
 class LandmarksComponentRow extends React.Component {
   constructor(props) {
       super(props);
-      this.id = 0;
-      this.place = this.props.place; 
-      this.start = 0;
-      this.end = 0;
+      this.place = this.props.place;
   }
   
   render() {
-    this.id = this.props.thing;
-
-    getEventInfo = () => {
+    addEvent = () => {
       const data = {
         visit: {
           name: this.place.name,
           latitude: this.place.geometry.location.lat(),
           longitude: this.place.geometry.location.lng(),
           rating: this.place.rating,
-          date: $("#date-input").val(),
-          start: $("#start-input").val(),
-          end: $("#end-input").val(),
+          day: $("#day-input option:selected").val(),
+          start: "2000-01-01T" + $("#start-input").val() + ":00Z",
+          end: "2000-01-01T" + $("#end-input").val() + ":00Z",
           itinerary_id: this.props.itinerary_id,
         }
       };
-      
+
       this.props.markerCallback(data.visit);
 
       fetch("/visits", {
@@ -42,14 +37,23 @@ class LandmarksComponentRow extends React.Component {
       window.sendVisit(data.visit);
     };
 
+    let items = [];
+    for (let i = 1; i <= this.props.days; i++) {
+        items.push(<option key={i} value={i}>{i}</option>);
+    }
+
     return <tr>
       <td>{this.place.name}</td>
       <td>{this.place.address}</td>
       <td>{this.place.rating}</td>
-      <td><input id="date-input" type="date" /><br/>
-      <input id="start-input" type="time" /><br/>
-      <input id="end-input" type="time" /><br/>
-      <button class="btn btn-success" onClick={getEventInfo}>Add</button></td>
+      <td>
+        Day: <select id="day-input">
+          {items}
+        </select><br/>
+        <input id="start-input" type="time" /><br/>
+        <input id="end-input" type="time" /><br/>
+        <button className="btn btn-success" onClick={addEvent}>Add</button>
+      </td>
     </tr>;
   }
 
