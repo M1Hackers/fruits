@@ -10,6 +10,7 @@ class LandmarksComponentRow extends React.Component {
       <td>{place.name}</td>
       <td>{place.address}</td>
       <td>{place.rating}</td>
+      <button class="btn btn-success"> Add </button>
     </tr>;
   
   }
