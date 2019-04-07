@@ -21,6 +21,7 @@ class LandmarksComponentTable extends React.Component {
         <LandmarksComponentRow
           place={place}
           key={this.id}
+          id={this.id}
           itinerary_id={this.props.itinerary_id}
           days={this.props.days}
           markerCallback = {this.props.markerCallback}/>

@@ -12,9 +12,9 @@ class LandmarksComponentRow extends React.Component {
           latitude: this.place.geometry.location.lat(),
           longitude: this.place.geometry.location.lng(),
           rating: this.place.rating,
-          day: $("#day-input option:selected").val(),
-          start: "2000-01-01T" + $("#start-input").val() + ":00Z",
-          end: "2000-01-01T" + $("#end-input").val() + ":00Z",
+          day: $("#day-input-" + this.props.id + " option:selected").val(),
+          start: "2000-01-01T" + $("#start-input-" + this.props.id).val() + ":00Z",
+          end: "2000-01-01T" + $("#end-input-" + this.props.id).val() + ":00Z",
           itinerary_id: this.props.itinerary_id,
         }
       };
@@ -47,17 +47,13 @@ class LandmarksComponentRow extends React.Component {
       <td>{this.place.address}</td>
       <td>{this.place.rating}</td>
       <td>
-        Day: <select id="day-input">
+        Day: <select id={"day-input-" + this.props.id}>
           {items}
         </select><br/>
-        <input id="start-input" type="time" /><br/>
-        <input id="end-input" type="time" /><br/>
+        <input id={"start-input-" + this.props.id} type="time" /><br/>
+        <input id={"end-input-" + this.props.id} type="time" /><br/>
         <button className="btn btn-success" onClick={addEvent}>Add</button>
       </td>
     </tr>;
   }
-
-
-
-  
 }
