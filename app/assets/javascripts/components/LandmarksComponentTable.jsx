@@ -45,9 +45,6 @@ LandmarksComponentTable.propTypes = {
   places: PropTypes.array,
   thing: PropTypes.number,
   itinerary_id: PropTypes.number,
-<<<<<<< HEAD
-  markerCallback: PropTypes.func
-=======
   days: PropTypes.number,
->>>>>>> Move to day-of-itinerary notation
+  markerCallback: PropTypes.func,
 }
