@@ -13,6 +13,12 @@ class ItineraryComponent extends React.Component {
     };
     this.setIt = this.setIt.bind(this);
     this.setMap = this.setMap.bind(this);
+
+    window.sendVisit = (visit) => {
+    newVisits = this.state.visits
+    newVisits.push(visit)
+    this.setState({visits: newVisits})
+    };
   }
 
   setIt() {
