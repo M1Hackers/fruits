@@ -16,8 +16,8 @@ class LandmarksComponentRow extends React.Component {
       const data = {
         visit: {
           name: this.place.name,
-          latitude: this.place.geometry.location.lat,
-          longitude: this.place.geometry.location.lng,
+          latitude: this.place.geometry.location.lat(),
+          longitude: this.place.geometry.location.lng(),
           rating: this.place.rating,
           date: $("#date-input").val(),
           start: $("#start-input").val(),
@@ -26,7 +26,7 @@ class LandmarksComponentRow extends React.Component {
         }
       };
       
-      console.log(data);
+      this.props.markerCallback(data.visit);
 
       fetch("/visits", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.

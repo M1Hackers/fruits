@@ -2,6 +2,8 @@ class LandmarksComponentTable extends React.Component {
   constructor(props) {
       super(props);
       this.state={places:[]};
+      this.id = 0;
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -14,19 +16,19 @@ class LandmarksComponentTable extends React.Component {
     }
     $("#table1 > tr").remove();
     const rows = [];
-    var id = 0;
     this.props.places.forEach((place) => {
       rows.push(
         <LandmarksComponentRow
           place={place}
-          key={id} 
-          thing = {id}
-          itinerary_id = {this.props.itinerary_id} />
+          key={this.id} 
+          thing = {this.id}
+          itinerary_id = {this.props.itinerary_id} 
+          markerCallback = {this.props.markerCallback}
+          />
       );
-      id += 1;
+      this.id += 1;
     });
 
-    // console.log("id, ", id);
     return <table id="table1" className="landmarks-table">
       <thead className="header">
         <tr>
@@ -43,5 +45,6 @@ class LandmarksComponentTable extends React.Component {
 LandmarksComponentTable.propTypes = {
   places: PropTypes.array,
   thing: PropTypes.number,
-  itinerary_id: PropTypes.number
+  itinerary_id: PropTypes.number,
+  markerCallback: PropTypes.func
 }

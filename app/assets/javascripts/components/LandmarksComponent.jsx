@@ -10,15 +10,39 @@ class LandmarksComponent extends React.Component {
       this.setLatLong = this.setLatLong.bind(this);
       this.getPlaces = this.getPlaces.bind(this);
     }
+
+    componentDidMount() {
+      loc = new window.google.maps.LatLng(0,0);
+      if (this.props.visits.length>0) {
+        loc = new window.google.maps.LatLng(this.props.visits[0].latitude,this.props.visits[0].longitude);
+      }
+      map = new window.google.maps.Map(document.getElementById("map"), {center: loc, zoom: 10});
+      this.props.visits.forEach((visit) => {
+        this.createMarkerWithLatLon(visit);
+      })
+    }
     
     setLatLong(newLat, newLong) {
       this.setState({ lat: newLat, long: newLong ,displaySearch:true});
     }
     
+    createMarkerWithLatLon(place) {
+      var marker = new window.google.maps.Marker({
+        map: map,
+        position: new window.google.maps.LatLng(place.latitude, place.longitude)
+      });
+
+      window.google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+      });
+    }
+
     createMarker(place) {
       var marker = new window.google.maps.Marker({
         map: map,
-        position: place.geometry.location
+        position: place.geometry.location,
+        opacity:0.5
       });
 
       window.google.maps.event.addListener(marker, 'click', function() {
@@ -28,7 +52,7 @@ class LandmarksComponent extends React.Component {
     }
 
     getPlaces() {
-      var loc = new window.google.maps.LatLng(this.state.lat, this.state.long);
+      loc = new window.google.maps.LatLng(this.state.lat, this.state.long);
       map = new window.google.maps.Map(document.getElementById("map"), {center: loc, zoom: 10});
       autocomplete = new window.google.maps.places.PlacesService(map);
       places_to_display = [];
@@ -52,6 +76,10 @@ class LandmarksComponent extends React.Component {
             this.createMarker(entry);
           });
         }
+      
+        this.props.visits.forEach((visit) => {
+          this.createMarkerWithLatLon(visit);
+        });  
 
       if (places_to_display.length > 0){
         this.setState({places:places_to_display});
@@ -70,7 +98,7 @@ class LandmarksComponent extends React.Component {
           <i id="search-icon" className="material-icons" onClick={this.getPlaces}>search</i>
         </div>
         : null}
-        <LandmarksComponentTable id="table" places={this.state.places} itinerary_id = {this.props.id}/>
+        <LandmarksComponentTable id="table" places={this.state.places} itinerary_id = {this.props.id} markerCallback = {this.createMarkerWithLatLon}/>
       </div>;
     }
     

@@ -15,6 +15,13 @@
   }
 }
 
+#itinerary-map {
+  display:none;
+  position:absolute;
+  width: 100%;
+  border: 1px solid black;
+}
+
 .topbar {
   line-height:2;
   width: 100%;
