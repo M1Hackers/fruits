@@ -20,7 +20,7 @@ class LandmarksComponentTable extends React.Component {
       rows.push(
         <LandmarksComponentRow
           place={place}
-          key={id}
+          key={this.id}
           itinerary_id={this.props.itinerary_id}
           days={this.props.days}
           markerCallback = {this.props.markerCallback}/>
