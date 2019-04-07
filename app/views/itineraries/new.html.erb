@@ -2,8 +2,8 @@
     <div class = "center"> 
         <%= form_with scope: :itinerary, url: itineraries_path, html: {class: "form-horizontal justify-content-center"}, local: true do |form| %>
             <%= form.text_field :name, required: true %>
-            <%= form.date_field :start %>
-            <%= form.date_field :end %>
+            <%= form.date_field :start, required: true %>
+            <%= form.date_field :end, required: true%>
             <%= form.submit "Make Itinerary", {class: "btn btn-success"} %>
         <% end %>
     <div/>
